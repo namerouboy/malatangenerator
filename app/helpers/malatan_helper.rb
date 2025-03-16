@@ -1,0 +1,2 @@
+module MalatanHelper
+end

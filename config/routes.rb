@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  root "hello#index"
+  root "malatan#index"
 end
