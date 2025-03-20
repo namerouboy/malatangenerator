@@ -4,7 +4,8 @@
 }
 
 header{
-  background-color: #282c34;
+  background-color: #FC913A;
+  color: white;
   width: 100%;
   height: 80px;
   padding: 0 5%;
@@ -13,3 +14,4 @@ header{
   justify-content: space-between;
   align-items: center;
 }
+

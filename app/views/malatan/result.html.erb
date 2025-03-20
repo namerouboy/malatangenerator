@@ -1,0 +1,25 @@
+<header>
+
+  <div class="logo">
+    <h1>マーラータンジェネレーター　めしあがれ</h1>
+  </div>
+
+</header>
+
+<body>
+
+  <tbody>
+      <% goukeichi = 0 %>
+
+      <% @syokuzai.each do |syokuzai| %>
+        <ul>
+          <li><%= syokuzai.name %><%= syokuzai.weight %></li>
+          <% goukeichi += syokuzai.weight %>
+        </ul>
+      <% end %>
+
+      <%= goukeichi %> グラム
+
+      <%= link_to "Back", root_path %>
+
+</body>

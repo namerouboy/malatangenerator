@@ -5,3 +5,17 @@
   </div>
 
 </header>
+
+<body>
+
+    <%= form_with url: search_path, local: true, method: :get do |f| %>
+      <% @syokuzai.each do |syokuzai| %>
+    <li> 
+      <%= f.check_box :syokuzai.name, { multiple: true }, syokuzai.name %>
+      <%= f.label :syokuzai.name, syokuzai.name %> 
+    </li>
+  <% end %>
+      <%= f.submit "検索", class: "btn btn-primary" %>
+    <% end %>
+
+</body>
