@@ -8,10 +8,38 @@ header{
   color: white;
   width: 100%;
   height: 80px;
-  padding: 0 5%;
+  padding: 0 0;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+body{
+  color: #4C4C4C;
+  padding: 0 5%;
+}
+
+.btn-top-radius {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  padding: 8px 10px 5px 10px;
+  text-decoration: none;
+  color: #FFA000;
+  background: #fff1da;
+  border-bottom: solid 4px #FFA000;
+  border-radius: 15px 15px 0 0;
+  transition: .4s;
+  border: none;
+}
+
+.btn-top-radius:hover {
+  background: #ffc25c;
+  color: #FFF;
+  outline: none;
+}
+
+ul {
+  list-style: none;
+}

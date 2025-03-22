@@ -9,16 +9,37 @@
 <body>
 
   <tbody>
-      <% goukeichi = 0 %>
+      <% goukeichi = 0.0 %>
+      <% nedan = 0.0 %>
+      <% calorie = 0.0 %>
+
+      <h2 style="color:#F68655">選んだ食材</h2>
 
       <% @syokuzai.each do |syokuzai| %>
         <ul>
           <li><%= syokuzai.name %><%= syokuzai.weight %></li>
           <% goukeichi += syokuzai.weight %>
+          <% calorie += syokuzai.calorie %>
         </ul>
       <% end %>
 
+      <br>
+
+      <h2 style="color:#F68655">重さ</h2>
       <%= goukeichi %> グラム
+
+      <br>
+
+      <h2 style="color:#F68655">値段</h2>
+      <% nedan = goukeichi /100 *400 %>
+      <%= nedan %> 円
+
+      <br>
+
+      <h2 style="color:#F68655">カロリー</h2>
+      <%= calorie %> キロカロリー
+
+      <br>
 
       <%= link_to "Back", root_path %>
 

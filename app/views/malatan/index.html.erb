@@ -9,13 +9,99 @@
 <body>
 
     <%= form_with url: search_path, local: true, method: :get do |f| %>
-      <% @syokuzai.each do |syokuzai| %>
-    <li> 
-      <%= f.check_box :syokuzai.name, { multiple: true }, syokuzai.name %>
-      <%= f.label :syokuzai.name, syokuzai.name %> 
-    </li>
-  <% end %>
-      <%= f.submit "検索", class: "btn btn-primary" %>
+
+    <h2 style="color:#F68655 ">スープ</h2>
+      <% @soup.each do |soup| %>
+        <ul>
+          <li> 
+            <%= f.check_box :syokuzai.name, { multiple: true }, soup.name %>
+            <%= f.label :syokuzai.name, soup.name %> 
+            <%= f.select :kazu, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], ["7", 7], ["8", 8], ["9", 9], ["10", 10]], include_blank: 0 %>
+          </li>
+        </ul>
+      <% end %>
+
+      <br>
+
+      <h2 style="color:#61C359" >野菜</h2>
+      <% @yasai.each do |yasai| %>
+        <ul>
+          <li> 
+            <%= f.check_box :syokuzai.name, { multiple: true }, yasai.name %>
+            <%= f.label :syokuzai.name, yasai.name %> 
+            <%= f.select :kazu, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], ["7", 7], ["8", 8], ["9", 9], ["10", 10]], include_blank: 0 %>
+          </li>
+        </ul>
+      <% end %>
+
+      <br>
+
+      <h2 style="color:#FEEABC">麺</h2>
+      <% @men.each do |men| %>
+        <ul>
+          <li> 
+            <%= f.check_box :syokuzai.name, { multiple: true }, men.name %>
+            <%= f.label :syokuzai.name, men.name %> 
+            <%= f.select :kazu, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], ["7", 7], ["8", 8], ["9", 9], ["10", 10]], include_blank: 0 %>
+          </li>
+        </ul>
+      <% end %>
+
+      <br>
+
+      <h2 style="color:#F6B352">練り物</h2>
+      <% @nerimono.each do |nerimono| %>
+        <ul>
+          <li> 
+            <%= f.check_box :syokuzai.name, { multiple: true }, nerimono.name %>
+            <%= f.label :syokuzai.name, nerimono.name %> 
+            <%= f.select :kazu, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], ["7", 7], ["8", 8], ["9", 9], ["10", 10]], include_blank: 0 %>
+          </li>
+        </ul>
+      <% end %>
+
+      <br>
+
+      <h2 style="color:#F68655">肉</h2>
+      <% @niku.each do |niku| %>
+        <ul>
+          <li> 
+            <%= f.check_box :syokuzai.name, { multiple: true }, niku.name %>
+            <%= f.label :syokuzai.name, niku.name %> 
+            <%= f.select :kazu, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], ["7", 7], ["8", 8], ["9", 9], ["10", 10]], include_blank: 0 %>
+          </li>
+        </ul>
+      <% end %>
+
+      <br>
+
+      <h2 style="color:#4790bb">魚介</h2>
+      <% @sakana.each do |sakana| %>
+        <ul>
+          <li> 
+            <%= f.check_box :syokuzai.name, { multiple: true }, sakana.name %>
+            <%= f.label :syokuzai.name, sakana.name %> 
+            <%= f.select :kazu, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], ["7", 7], ["8", 8], ["9", 9], ["10", 10]], include_blank: 0 %>
+          </li>
+        </ul>
+      <% end %>
+
+      <br>
+
+      <h2 style="color:#757575">その他</h2>
+      <% @sonota.each do |sonota| %>
+        <ul>
+          <li> 
+            <%= f.check_box :syokuzai.name, { multiple: true }, sonota.name %>
+            <%= f.label :syokuzai.name, sonota.name %> 
+            <%= f.select :kazu, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], ["7", 7], ["8", 8], ["9", 9], ["10", 10]], include_blank: 0 %>
+          </li>
+        </ul>
+      <% end %>
+
+      <br>
+
+      <%= f.submit "煮込む", class: "btn-top-radius" %>
     <% end %>
 
 </body>
