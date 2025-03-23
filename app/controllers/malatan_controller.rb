@@ -11,7 +11,6 @@ class MalatanController < ApplicationController
 
   def search
     @syokuzai = Syokuzai.where(name: params[:syokuzai.name])
-    @kazu = params[:kazu]
     render "/malatan/result"
   end
 
