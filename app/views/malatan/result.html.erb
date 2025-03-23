@@ -17,7 +17,7 @@
 
       <% @syokuzai.each do |syokuzai| %>
         <ul>
-          <li><%= syokuzai.name %><%= syokuzai.weight %></li>
+          <li><%= syokuzai.name %>　<%= syokuzai.weight %>グラム</li>
           <% goukeichi += syokuzai.weight %>
           <% calorie += syokuzai.calorie %>
         </ul>
