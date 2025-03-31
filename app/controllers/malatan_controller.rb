@@ -7,10 +7,20 @@ class MalatanController < ApplicationController
     @niku = Syokuzai.where(category: "meats")
     @sakana = Syokuzai.where(category: "seafoods")
     @sonota = Syokuzai.where(category: "sonota")
+    @suuryou = Suuryou.all
   end
 
   def search
-    @syokuzai = Syokuzai.where(name: params[:syokuzai.name])
+      queries = params[:syokuzais].map do |syokuzai|
+      Syokuzai.where(syokuzai.permit(:name).to_h)
+    end
+  
+    # 複数の where 条件を OR で結合
+    @syokuzai = queries.reduce(:or)
+
+    @suuryous = params[:syokuzais] || []
+
+
     render "/malatan/result"
   end
 

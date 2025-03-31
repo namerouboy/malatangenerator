@@ -117,3 +117,7 @@ calorie: 10,
 explanation: '本場の風を取り入れたいならマスト。'
 
 )
+
+for i in 0..10
+  Suuryou.create(suuryou: i)
+  end

@@ -17,9 +17,12 @@
 
       <% @syokuzai.each do |syokuzai| %>
         <ul>
-          <li><%= syokuzai.name %>　<%= syokuzai.weight %>グラム</li>
-          <% goukeichi += syokuzai.weight %>
-          <% calorie += syokuzai.calorie %>
+
+          <% suuryou = @suuryous.find {|suuryous| suuryous[:name] == syokuzai.name}&.dig("suuryou")&.to_i %>
+
+          <li><%= syokuzai.name %>　<%= syokuzai.weight %>グラム　×<%= suuryou %>個　=　<%= syokuzai.weight * suuryou %>グラム</li>
+          <% goukeichi += syokuzai.weight * suuryou %>
+          <% calorie += syokuzai.calorie * suuryou %>
         </ul>
       <% end %>
 
