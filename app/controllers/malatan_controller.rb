@@ -11,6 +11,7 @@ class MalatanController < ApplicationController
   end
 
   def search
+
       queries = params[:syokuzais].map do |syokuzai|
       Syokuzai.where(syokuzai.permit(:name).to_h)
     end
@@ -22,6 +23,11 @@ class MalatanController < ApplicationController
 
 
     render "/malatan/result"
+
+    @syokuzai = Syokuzai.where(name: params[:syokuzai.name])
+    @kazu = params[:kazu]
+    render "/malatan/rsult"
+
   end
 
 end

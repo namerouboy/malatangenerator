@@ -16,7 +16,9 @@
           <li> 
             <%= f.check_box 'syokuzais[][name]', { multiple: false }, soup.name %>
             <%= f.label :syokuzai.name, soup.name %> 
+
             <%= f.collection_select 'syokuzais[][suuryou]', Suuryou.all, :suuryou, :suuryou, selected: 0 %>
+
           </li>
         </ul>
       <% end %>
@@ -29,7 +31,9 @@
           <li> 
             <%= f.check_box 'syokuzais[][name]', { multiple: false }, yasai.name %>
             <%= f.label :syokuzai.name, yasai.name %> 
+
             <%= f.collection_select 'syokuzais[][suuryou]', Suuryou.all, :suuryou, :suuryou, selected: 0  %>
+
           </li>
         </ul>
       <% end %>
@@ -42,7 +46,9 @@
           <li> 
             <%= f.check_box 'syokuzais[][name]', { multiple: false }, men.name %>
             <%= f.label :syokuzai.name, men.name %> 
+
             <%= f.collection_select 'syokuzais[][suuryou]', Suuryou.all, :suuryou, :suuryou, selected: 0  %>
+
           </li>
         </ul>
       <% end %>
@@ -53,9 +59,11 @@
       <% @nerimono.each do |nerimono| %>
         <ul>
           <li> 
+
             <%= f.check_box 'syokuzais[][name]', { multiple: false }, nerimono.name %>
             <%= f.label :syokuzai.name, nerimono.name %>
             <%= f.collection_select 'syokuzais[][suuryou]', Suuryou.all, :suuryou, :suuryou, selected: 0  %> 
+
           </li>
         </ul>
       <% end %>
@@ -68,7 +76,9 @@
           <li> 
             <%= f.check_box 'syokuzais[][name]', { multiple: false }, niku.name %>
             <%= f.label :syokuzai.name, niku.name %> 
+
             <%= f.collection_select 'syokuzais[][suuryou]', Suuryou.all, :suuryou, :suuryou, selected: 0  %>
+
           </li>
         </ul>
       <% end %>
@@ -81,7 +91,9 @@
           <li> 
             <%= f.check_box 'syokuzais[][name]', { multiple: false }, sakana.name %>
             <%= f.label :syokuzai.name, sakana.name %> 
+
             <%= f.collection_select 'syokuzais[][suuryou]', Suuryou.all, :suuryou, :suuryou, selected: 0  %>
+
           </li>
         </ul>
       <% end %>
@@ -94,7 +106,9 @@
           <li> 
             <%= f.check_box 'syokuzais[][name]', { multiple: false }, sonota.name %>
             <%= f.label :syokuzai.name, sonota.name %> 
+
             <%= f.collection_select 'syokuzais[][suuryou]', Suuryou.all, :suuryou, :suuryou, selected: 0  %>
+
           </li>
         </ul>
       <% end %>
