@@ -11,23 +11,14 @@ class MalatanController < ApplicationController
   end
 
   def search
-
-      queries = params[:syokuzais].map do |syokuzai|
+    queries = params[:syokuzais].map do |syokuzai|
       Syokuzai.where(syokuzai.permit(:name).to_h)
     end
   
-    # 複数の where 条件を OR で結合
     @syokuzai = queries.reduce(:or)
-
     @suuryous = params[:syokuzais] || []
-
-
+  
     render "/malatan/result"
-
-    @syokuzai = Syokuzai.where(name: params[:syokuzai.name])
-    @kazu = params[:kazu]
-    render "/malatan/rsult"
-
   end
 
 end
