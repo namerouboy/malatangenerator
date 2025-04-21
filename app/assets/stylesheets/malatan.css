@@ -43,3 +43,48 @@ body{
 ul {
   list-style: none;
 }
+
+
+
+
+.ingredient-button {
+  width: 200px;
+  padding: 10px;
+  margin: 10px 0;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #f9f9f9;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s ease;
+}
+
+.ingredient-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #F68655;
+  width: 0%;
+  z-index: 0;
+  transition: width 0.3s ease;
+}
+
+.ingredient-button.clicked {
+  color: white;
+}
+
+.ingredient-button span {
+  position: relative;
+  z-index: 1;
+}
+
+/* 非表示のform要素 */
+.hidden-name {
+  display: none;
+}
+.hidden-suuryou {
+  display: none;
+}

@@ -8,20 +8,27 @@
 
 <body>
 
-    <%= form_with url: search_path, local: true, method: :get do |f| %>
+  <%= form_with url: search_path, local: true, method: :get do |f| %>
+  <h2 style="color:#F68655">スープ</h2>
+  <% @soup.each_with_index do |soup, index| %>
+    <ul>
+      <li>
+        <div 
+          class="ingredient-button" 
+          data-index="<%= index %>" 
+          data-max="1" 
+          data-name="<%= soup.name %>"
+        >
+          <%= soup.name %>
+        </div>
 
-    <h2 style="color:#F68655 ">スープ</h2>
-      <% @soup.each do |soup| %>
-        <ul>
-          <li> 
-            <%= f.check_box 'syokuzais[][name]', { multiple: false }, soup.name %>
-            <%= f.label :syokuzai.name, soup.name %> 
-
-            <%= f.collection_select 'syokuzais[][suuryou]', Suuryou.all, :suuryou, :suuryou, selected: 0 %>
-
-          </li>
-        </ul>
-      <% end %>
+        <!-- 非表示の実際のform要素 -->
+        <%= f.check_box "syokuzais[][name]", { multiple: false, class: 'hidden-name', id: "name_#{index}" }, soup.name, nil %>
+        <!-- <%= f.collection_select "syokuzais[][suuryou]", Suuryou.all, :suuryou, :suuryou, { selected: 0, class: 'hidden-suuryou', id: "suuryou_#{index}" } %> -->
+        <%= f.collection_select "syokuzais[][suuryou]", Suuryou.where(suuryou: [0, 1]), :suuryou, :suuryou, { selected: 0 }, { class: 'hidden-suuryou', id: "suuryou_#{index}" } %>
+      </li>
+    </ul>
+  <% end %>
 
       <br>
 
