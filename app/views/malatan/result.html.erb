@@ -30,17 +30,25 @@
 
       <h2 style="color:#F68655">重さ</h2>
       <%= goukeichi %> グラム
-
+      
       <br>
 
       <h2 style="color:#F68655">値段</h2>
-      <% nedan = goukeichi /100 *400 %>
-      <%= nedan %> 円
+      <% nedan = (goukeichi+200) /100 *400 %>
+      <%= nedan.round(2) %> 円
+      <br>
+      ※器の重さ200グラムを加算しています
 
       <br>
 
       <h2 style="color:#F68655">カロリー</h2>
+      選んだ具材のカロリー
+      <br>
       <%= calorie %> キロカロリー
+      <br>
+      サービス麺(80グラム)を追加した場合のカロリー
+      <br>
+      <%= calorie + 300 %> キロカロリー
 
       <br>
 
