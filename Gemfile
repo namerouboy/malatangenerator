@@ -84,3 +84,5 @@ end
 group :production do
     gem "pg", "~> 1.4"
   end
+
+gem "rspec-rails", "~> 7.1", :groups => [:development, :test]
