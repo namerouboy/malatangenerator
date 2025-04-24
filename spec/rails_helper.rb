@@ -14,6 +14,9 @@ require 'rspec/rails'
 Capybara.server_host = '0.0.0.0'
 Capybara.server_port = 3001 # 空いてる任意のポート（CI上で他と被らなければOK）
 Capybara.app_host = "http://127.0.0.1:3001"
+Capybara.save_path = Rails.root.join("tmp/capybara")
+FileUtils.mkdir_p(Capybara.save_path) unless File.directory?(Capybara.save_path)
+
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
