@@ -4,14 +4,14 @@ RSpec.describe "マーラータン検索", type: :system do
   before do
     driven_by(:selenium_chrome_headless) # JS不要の設定。JSありにしたいなら :selenium_chrome_headless など
     # 必要なデータをセットアップ
-    @ingredient = Syokuzai.create!(
-      category: "vegetables",
-      name: "白菜",
-      weight: 100,
-      calorie: 20,
-      explanation: "シャキシャキしてます"
-    )
-    Suuryou.create!(suuryou: 1)
+    # @ingredient = Syokuzai.create!(
+    #   category: "vegetables",
+    #   name: "白菜",
+    #   weight: 100,
+    #   calorie: 20,
+    #   explanation: "シャキシャキしてます"
+    # )
+    # Suuryou.create!(suuryou: 1)
   end
 
   it "野菜の中から白菜を選択して検索し、結果に白菜が表示される" do
