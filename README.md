@@ -1,7 +1,22 @@
-# GitHub Codespaces ♥️ Ruby on Rails
+## サービスのURL
 
-Welcome to your shiny new Codespace running Rails! We've got everything fired up and running for you to explore Rails.
+**[マーラータンジェネレーター](https://malatangenerator.onrender.com/)**  
+> ※ 15分以上リクエストがない場合、起動に時間を要します。
 
-You've got a blank canvas to work on from a git perspective as well. There's a single initial commit with the what you're seeing right now - where you go from here is up to you!
+## アプリケーション概要
 
-Everything you do here is contained within this one codespace. There is no repository on GitHub yet. If and when you’re ready you can click "Publish Branch" and we’ll create your repository and push up your project. If you were just exploring then and have no further need for this code then you can simply delete your codespace and it's gone forever.
+マーラータンの具材選択をシミュレーションできるアプリです。  
+お店と同じ流れを意識しています。
+
+- 好きな具材を好きな数だけ選択  
+- 最後に計量を行って合計を確認
+
+## 使用技術
+| Category          | Technology Stack                                     |
+| ----------------- | --------------------------------------------------   |
+| Frontend          | JavaScript                       |
+| Backend           | Ruby on Rails                           |
+| Infrastructure    | Render                          |
+| Database          | PostgreSQL                                           |
+| CI/CD             | GitHub Actions                                       |
+
