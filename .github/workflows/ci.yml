@@ -52,3 +52,10 @@ jobs:
 
     - name: Run system specs
       run: bundle exec rspec spec/system
+
+    - name: Upload Capybara screenshots
+      if: failure()
+      uses: actions/upload-artifact@v3
+      with:
+        name: capybara-screenshots
+        path: tmp/capybara
