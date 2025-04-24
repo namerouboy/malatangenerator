@@ -7,6 +7,7 @@ gem 'csv'
 gem 'ostruct'
 gem 'logger'
 gem 'fiddle'
+gem 'benchmark'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3"
