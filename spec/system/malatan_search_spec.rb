@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.describe "マーラータン検索", type: :system do
   before do
-    driven_by(:rack_test) # JS不要の設定。JSありにしたいなら :selenium_chrome_headless など
+    driven_by(:selenium_chrome_headless) # JS不要の設定。JSありにしたいなら :selenium_chrome_headless など
     # 必要なデータをセットアップ
     @ingredient = Syokuzai.create!(
-      name: "白菜",
       category: "vegetables",
+      name: "白菜",
       weight: 100,
       calorie: 20,
       explanation: "シャキシャキしてます"
