@@ -18,6 +18,7 @@ RSpec.describe "マーラータン検索", type: :system do
     visit root_path
 
     # チェックボックスを模したボタンがJavaScriptで機能するならJSドライバが必要になるかも
+    expect(page).to have_css("[data-name='白菜']", wait: 5)
     find("[data-name='白菜']").click
 
     # 送信ボタンをクリック

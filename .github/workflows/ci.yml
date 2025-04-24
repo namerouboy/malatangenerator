@@ -45,5 +45,10 @@ jobs:
     - name: Set up Chrome for Capybara
       uses: browser-actions/setup-chrome@v1
 
+    - name: Prepare DB
+      run: |
+        bundle exec rails db:schema:load RAILS_ENV=test
+        bundle exec rails db:seed RAILS_ENV=test
+
     - name: Run system specs
       run: bundle exec rspec spec/system
