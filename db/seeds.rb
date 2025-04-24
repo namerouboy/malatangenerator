@@ -5,6 +5,10 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+#   
+
+Suuryou.destroy_all
+Syokuzai.destroy_all
 
 for i in 0..10
   Suuryou.create(suuryou: i)
