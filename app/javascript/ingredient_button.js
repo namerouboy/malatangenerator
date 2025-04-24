@@ -12,19 +12,23 @@ document.addEventListener('DOMContentLoaded', function () {
       // 背景の割合を変更
       const percentage = (count / max) * 100;
       button.style.setProperty('--percentage', `${percentage}%`);
-      button.style.setProperty('color', count > 0 ? 'white' : 'black');
+      button.style.setProperty('color', count > 0 ? '#F6B352' : 'black');
       button.querySelector('::before')?.remove(); // 既存のbefore削除（ない場合もある）
 
       // 疑似要素ではなくstyleに直接背景を付ける
       button.style.background = `linear-gradient(to right, #F68655 ${percentage}%, #f9f9f9 ${percentage}%)`;
 
       // hiddenのcheckboxとselectを同期
-      const check = document.getElementById(`name_${index}`);
-      const select = document.getElementById(`suuryou_${index}`);
-      check.checked = count > 0;
-      if (select) {
-        select.value = count;
-      }
+      const hiddenName = document.getElementById(`hidden_name_${index}`);
+const select = document.getElementById(`suuryou_${index}`);
+
+if (count > 0) {
+  hiddenName.value = button.dataset.name;
+  select.value = count;
+} else {
+  hiddenName.value = "";
+  select.value = 0;
+}
     });
   });
 });

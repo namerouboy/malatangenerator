@@ -1,57 +1,81 @@
 <header>
-
   <div class="logo">
-    <h1>マーラータンジェネレーター　めしあがれ</h1>
+    <h1>マーラータンジェネレーター</h1>
   </div>
-
 </header>
 
-<body>
+<body class="malatan-body">
+  <div id="result-capture">
+  <div class="section">
+    <h2 class="section-title">選んだ食材</h2>
+    <table class="syokuzai-table">
+      <thead>
+        <tr>
+          <th>名前</th>
+          <th>重さ（g）</th>
+          <th>個数</th>
+          <th>合計重さ（g）</th>
+          <th>合計カロリー（kcal）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% goukeichi = 0.0 %>
+        <% calorie = 0.0 %>
 
-  <tbody>
-      <% goukeichi = 0.0 %>
-      <% nedan = 0.0 %>
-      <% calorie = 0.0 %>
-
-      <h2 style="color:#F68655">選んだ食材</h2>
-
-      <% @syokuzai.each do |syokuzai| %>
-        <ul>
-
-          <% suuryou = @suuryous.find {|suuryous| suuryous[:name] == syokuzai.name}&.dig("suuryou")&.to_i %>
-
-          <li><%= syokuzai.name %>　<%= syokuzai.weight %>グラム　×<%= suuryou %>個　=　<%= syokuzai.weight * suuryou %>グラム</li>
-          <% goukeichi += syokuzai.weight * suuryou %>
+        <% @syokuzai.each do |syokuzai| %>
+          <% matched = @suuryous.find { |s| s["name"] == syokuzai.name } || {} %>
+          <% suuryou = matched["suuryou"].to_i %>
+          <% total_weight = syokuzai.weight * suuryou %>
+          <% goukeichi += total_weight %>
+          <% total_calorie = syokuzai.calorie * suuryou %>
           <% calorie += syokuzai.calorie * suuryou %>
-        </ul>
-      <% end %>
+          <tr>
+            <td><%= syokuzai.name %></td>
+            <td><%= syokuzai.weight %></td>
+            <td><%= suuryou %></td>
+            <td><%= total_weight %></td>
+            <td><%= total_calorie %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
-      <br>
+  <div class="section">
+    <h2 class="section-title">重さ</h2>
+    <p><%= goukeichi %> グラム</p>
+  </div>
 
-      <h2 style="color:#F68655">重さ</h2>
-      <%= goukeichi %> グラム
-      
-      <br>
+  <div class="section">
+    <h2 class="section-title">値段</h2>
+    <% dish_weight = 150 %>
+    <% nedan = (goukeichi + dish_weight) / 100 * 400 %>
+    <p><%= nedan.round(2) %> 円</p>
+    <small>※器の重さ<%= dish_weight %>グラムを加算しています</small>
+  </div>
 
-      <h2 style="color:#F68655">値段</h2>
-      <% nedan = (goukeichi+200) /100 *400 %>
-      <%= nedan.round(2) %> 円
-      <br>
-      ※器の重さ200グラムを加算しています
+  <div class="section">
+    <h2 class="section-title">カロリー</h2>
+    <p>選んだ具材のカロリー: <%= calorie %> キロカロリー</p>
+    <p>サービス麺(80グラム)を追加した場合: <%= calorie + 300 %> キロカロリー</p>
+  </div>
+</div>
+  <%= link_to "戻る", root_path, class: "btn-top-radius" %>
 
-      <br>
+  <button onclick="saveAsImage()" class="save-image-btn">レシピを保存</button>
 
-      <h2 style="color:#F68655">カロリー</h2>
-      選んだ具材のカロリー
-      <br>
-      <%= calorie %> キロカロリー
-      <br>
-      サービス麺(80グラム)を追加した場合のカロリー
-      <br>
-      <%= calorie + 300 %> キロカロリー
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script>
+  function saveAsImage() {
+    const target = document.getElementById("result-capture");
+    html2canvas(target).then(canvas => {
+      const link = document.createElement("a");
+      link.download = "malatan_result.png";
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    });
+  }
+</script>
 
-      <br>
-
-      <%= link_to "Back", root_path %>
 
 </body>

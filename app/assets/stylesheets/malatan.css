@@ -7,12 +7,19 @@ header{
   background-color: #FC913A;
   color: white;
   width: 100%;
-  height: 80px;
+  height: 45px;
   padding: 0 0;
   box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
+  /* display: flex; */
+  /* justify-content: space-between; */
   align-items: center;
+}
+
+h1 {
+  white-space: nowrap;      /* テキストの改行を防ぐ */
+  overflow: hidden;         /* はみ出した部分を隠す（必要に応じて） */
+  text-overflow: ellipsis;  /* 省略記号を表示（オプション） */
+  font-size: 1.5rem;         /* モバイル対応で文字サイズを少し下げる */
 }
 
 body{
@@ -24,19 +31,22 @@ body{
   position: relative;
   display: inline-block;
   font-weight: bold;
-  padding: 8px 10px 5px 10px;
+  font-size: 1.1rem; /* 👈 少し大きめの文字 */
+  padding: 14px 24px; /* 👈 押しやすく見やすく */
   text-decoration: none;
   color: #FFA000;
   background: #fff1da;
   border-bottom: solid 4px #FFA000;
   border-radius: 15px 15px 0 0;
-  transition: .4s;
+  transition: background 0.3s ease, transform 0.2s ease;
   border: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* 👈 やんわり立体感 */
 }
 
 .btn-top-radius:hover {
   background: #ffc25c;
-  color: #FFF;
+  color: white;
+  transform: scale(1.03); /* 👈 ふわっと拡大 */
   outline: none;
 }
 
@@ -45,35 +55,60 @@ ul {
 }
 
 
+.ingredient-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ingredient-group > div {
+  display: flex;
+  justify-content: center;  /* 真ん中に寄せる */
+  align-items: center;
+  padding: 0;
+  margin: 0;
+
+  width: fit-content; /* ボタンに合わせてサイズを最小化 */
+  max-width: 100%; /* はみ出し防止 */
+}
+
 
 
 .ingredient-button {
-  width: 200px;
-  padding: 10px;
-  margin: 10px 0;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-  cursor: pointer;
-  background: #f9f9f9;
+  width: 90px;
+  height: 90px;
+  border-radius: 16px;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
+  border: 2px solid #ccc;
+  cursor: pointer;
   overflow: hidden;
+  background-color: #f9f9f9;
   transition: background 0.3s ease;
+  font-weight: bold;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none; /* Safari用 */
 }
 
 .ingredient-button::before {
   content: "";
   position: absolute;
-  top: 0;
+  bottom: 0; /* ← 下からスタート */
   left: 0;
-  height: 100%;
+  width: 100%;
+  height: 0%;
   background-color: #F68655;
-  width: 0%;
   z-index: 0;
-  transition: width 0.3s ease;
+  transition: height 0.3s ease;
 }
 
 .ingredient-button.clicked {
-  color: white;
+  color: #F6B352;
 }
 
 .ingredient-button span {
@@ -81,10 +116,108 @@ ul {
   z-index: 1;
 }
 
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3列 */
+  gap: 4px;
+  justify-items: center;
+}
+
+.ingredient-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* 非表示のform要素 */
+.hidden-fields {
+  display: none;
+}
+
+.ingredient-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .hidden-name {
   display: none;
 }
 .hidden-suuryou {
   display: none;
+}
+
+
+/* result画面 */
+.malatan-body {
+  font-family: sans-serif;
+  padding: 1rem;
+  line-height: 1.6;
+}
+
+.section {
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 2px solid #F68655;
+  padding-bottom: 0.3rem;
+  color: #F68655;
+}
+
+.syokuzai-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.syokuzai-table th,
+.syokuzai-table td {
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.syokuzai-table th {
+  background-color: #f9f9f9;
+}
+
+.description {
+  padding: 1em;
+  background-color: #fff8e1;
+  border-radius: 8px;
+  margin: 1em 0;
+  font-size: 1.1em;
+  color: #333;
+}
+
+.ingredient-item {
+  margin-bottom: 0.8em;
+}
+
+
+/* 画像保存ボタンのスタイル */
+.save-image-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #F68655;  /* 優しいオレンジ色 */
+  color: white;
+  border-radius: 30px;  /* 丸みを帯びた角 */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.save-image-btn:hover {
+  background-color: #F36F26;  /* ホバー時の少し濃いオレンジ色 */
+  transform: scale(1.1);  /* ちょっと大きくなるアニメーション */
+}
+
+.save-image-btn:active {
+  background-color: #F36F26;  /* 押下時の色 */
+  transform: scale(1);  /* 押した時に元のサイズに戻る */
 }

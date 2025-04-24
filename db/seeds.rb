@@ -69,6 +69,34 @@ end
 
 # Syokuzai.create(
 
+# category: 'vegetables',
+
+# name: 'ぶなしめじ',
+
+# weight: 15,
+
+# calorie: 33,
+
+# explanation: '豊富な食物繊維が辛さをやわらげる'
+
+# )
+
+# Syokuzai.create(
+
+# category: 'vegetables',
+
+# name: 'しいたけ',
+
+# weight: 10,
+
+# calorie: 2,
+
+# explanation: 'じゅわわと染み出るおだしがこれまたうまい'
+
+# )
+
+# Syokuzai.create(
+
 # category: 'men',
 
 # name: '春雨',
