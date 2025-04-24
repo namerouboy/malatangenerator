@@ -11,14 +11,21 @@ class MalatanController < ApplicationController
   end
 
   def search
+    puts params.inspect
     queries = params[:syokuzais].map do |syokuzai|
       Syokuzai.where(syokuzai.permit(:name).to_h)
     end
   
     @syokuzai = queries.reduce(:or)
-    @suuryous = params[:syokuzais] || []
+    @suuryous = search_params
   
     render "/malatan/result"
+  end
+
+  def search_params
+    params.require(:syokuzais).map do |syokuzai|
+      syokuzai.permit(:name, :suuryou)
+    end
   end
 
 end

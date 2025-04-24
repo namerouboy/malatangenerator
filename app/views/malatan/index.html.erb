@@ -1,121 +1,179 @@
 <header>
-
   <div class="logo">
     <h1>マーラータンジェネレーター</h1>
   </div>
-
 </header>
 
 <body>
+  <div class="description">
+    <p>食材を選択してください。１つの食材につき5個まで追加することができます。</p>
+  </div>
 
-    <%= form_with url: search_path, local: true, method: :get do |f| %>
+  <%= form_with url: search_path, local: true, method: :get do |f| %>
 
-    <h2 style="color:#F68655 ">スープ</h2>
-      <% @soup.each do |soup| %>
-        <ul>
-          <li> 
-            <%= f.check_box 'syokuzais[][name]', { multiple: false }, soup.name %>
-            <%= f.label :syokuzai.name, soup.name %> 
+  <% index_offset = 0 %>
 
-            <%= f.collection_select 'syokuzais[][suuryou]', Suuryou.all, :suuryou, :suuryou, selected: 0 %>
+  <h2 class="section-title soup">スープ</h2>
+  <div class="ingredient-group">
+    <% @soup.each_with_index do |soup, index| %>
+      <% global_index = index + index_offset %>
+      <div class="ingredient-item">
+        <div 
+          class="ingredient-button"
+          data-index="<%= global_index %>"
+          data-max="1"
+          data-name="<%= soup.name %>"
+        >
+          <span><%= soup.name %></span>
+        </div>
 
-          </li>
-        </ul>
-      <% end %>
-
-      <br>
-
-      <h2 style="color:#61C359" >野菜</h2>
-      <% @yasai.each do |yasai| %>
-        <ul>
-          <li> 
-            <%= f.check_box 'syokuzais[][name]', { multiple: false }, yasai.name %>
-            <%= f.label :syokuzai.name, yasai.name %> 
-
-            <%= f.collection_select 'syokuzais[][suuryou]', Suuryou.all, :suuryou, :suuryou, selected: 0  %>
-
-          </li>
-        </ul>
-      <% end %>
-
-      <br>
-
-      <h2 style="color:#FEEABC">麺</h2>
-      <% @men.each do |men| %>
-        <ul>
-          <li> 
-            <%= f.check_box 'syokuzais[][name]', { multiple: false }, men.name %>
-            <%= f.label :syokuzai.name, men.name %> 
-
-            <%= f.collection_select 'syokuzais[][suuryou]', Suuryou.all, :suuryou, :suuryou, selected: 0  %>
-
-          </li>
-        </ul>
-      <% end %>
-
-      <br>
-
-      <h2 style="color:#F6B352">練り物</h2>
-      <% @nerimono.each do |nerimono| %>
-        <ul>
-          <li> 
-
-            <%= f.check_box 'syokuzais[][name]', { multiple: false }, nerimono.name %>
-            <%= f.label :syokuzai.name, nerimono.name %>
-            <%= f.collection_select 'syokuzais[][suuryou]', Suuryou.all, :suuryou, :suuryou, selected: 0  %> 
-
-          </li>
-        </ul>
-      <% end %>
-
-      <br>
-
-      <h2 style="color:#F68655">肉</h2>
-      <% @niku.each do |niku| %>
-        <ul>
-          <li> 
-            <%= f.check_box 'syokuzais[][name]', { multiple: false }, niku.name %>
-            <%= f.label :syokuzai.name, niku.name %> 
-
-            <%= f.collection_select 'syokuzais[][suuryou]', Suuryou.all, :suuryou, :suuryou, selected: 0  %>
-
-          </li>
-        </ul>
-      <% end %>
-
-      <br>
-
-      <h2 style="color:#4790bb">魚介</h2>
-      <% @sakana.each do |sakana| %>
-        <ul>
-          <li> 
-            <%= f.check_box 'syokuzais[][name]', { multiple: false }, sakana.name %>
-            <%= f.label :syokuzai.name, sakana.name %> 
-
-            <%= f.collection_select 'syokuzais[][suuryou]', Suuryou.all, :suuryou, :suuryou, selected: 0  %>
-
-          </li>
-        </ul>
-      <% end %>
-
-      <br>
-
-      <h2 style="color:#757575">その他</h2>
-      <% @sonota.each do |sonota| %>
-        <ul>
-          <li> 
-            <%= f.check_box 'syokuzais[][name]', { multiple: false }, sonota.name %>
-            <%= f.label :syokuzai.name, sonota.name %> 
-
-            <%= f.collection_select 'syokuzais[][suuryou]', Suuryou.all, :suuryou, :suuryou, selected: 0  %>
-
-          </li>
-        </ul>
-      <% end %>
-
-      <br>
-
-      <%= f.submit "煮込む", class: "btn-top-radius" %>
+        <%= hidden_field_tag "syokuzais[][name]", "", id: "hidden_name_#{global_index}", class: "hidden-name" %>
+        <%= select_tag "syokuzais[][suuryou]", options_for_select([0, 1], 0), id: "suuryou_#{global_index}", class: "hidden-suuryou" %>
+      </div>
     <% end %>
+    <% index_offset += @soup.size %>
+  </div>
 
+  <br>
+
+  <h2 class="section-title yasai">野菜</h2>
+  <div class="ingredient-group">
+    <% @yasai.each_with_index do |yasai, index| %>
+      <% global_index = index + index_offset %>
+      <div class="ingredient-item">
+        <div 
+          class="ingredient-button"
+          data-index="<%= global_index %>"
+          data-max="5"
+          data-name="<%= yasai.name %>"
+        >
+          <span><%= yasai.name %></span>
+        </div>
+
+        <%= hidden_field_tag "syokuzais[][name]", "", id: "hidden_name_#{global_index}", class: "hidden-name" %>
+        <%= select_tag "syokuzais[][suuryou]", options_for_select((0..5).to_a, 0), id: "suuryou_#{global_index}", class: "hidden-suuryou" %>
+      </div>
+    <% end %>
+    <% index_offset += @yasai.size %>
+  </div>
+
+  <br>
+
+  <h2 class="section-title men">麺</h2>
+  <div class="ingredient-group">
+    <% @men.each_with_index do |men, index| %>
+      <% global_index = index + index_offset %>
+      <div class="ingredient-item">
+        <div 
+          class="ingredient-button"
+          data-index="<%= global_index %>"
+          data-max="5"
+          data-name="<%= men.name %>"
+        >
+          <span><%= men.name %></span>
+        </div>
+
+        <%= hidden_field_tag "syokuzais[][name]", "", id: "hidden_name_#{global_index}", class: "hidden-name" %>
+        <%= select_tag "syokuzais[][suuryou]", options_for_select((0..5).to_a, 0), id: "suuryou_#{global_index}", class: "hidden-suuryou" %>
+      </div>
+    <% end %>
+    <% index_offset += @men.size %>
+  </div>
+
+  <br>
+
+  <h2 class="section-title nerimono">練り物</h2>
+  <div class="ingredient-group">
+    <% @nerimono.each_with_index do |nerimono, index| %>
+      <% global_index = index + index_offset %>
+      <div class="ingredient-item">
+        <div 
+          class="ingredient-button"
+          data-index="<%= global_index %>"
+          data-max="5"
+          data-name="<%= nerimono.name %>"
+        >
+          <span><%= nerimono.name %></span>
+        </div>
+
+        <%= hidden_field_tag "syokuzais[][name]", "", id: "hidden_name_#{global_index}", class: "hidden-name" %>
+        <%= select_tag "syokuzais[][suuryou]", options_for_select((0..5).to_a, 0), id: "suuryou_#{global_index}", class: "hidden-suuryou" %>
+      </div>
+    <% end %>
+    <% index_offset += @nerimono.size %>
+  </div>
+
+  <br>
+
+  <h2 class="section-title niku">肉</h2>
+  <div class="ingredient-group">
+    <% @niku.each_with_index do |niku, index| %>
+      <% global_index = index + index_offset %>
+      <div class="ingredient-item">
+        <div 
+          class="ingredient-button"
+          data-index="<%= global_index %>"
+          data-max="5"
+          data-name="<%= niku.name %>"
+        >
+          <span><%= niku.name %></span>
+        </div>
+
+        <%= hidden_field_tag "syokuzais[][name]", "", id: "hidden_name_#{global_index}", class: "hidden-name" %>
+        <%= select_tag "syokuzais[][suuryou]", options_for_select((0..5).to_a, 0), id: "suuryou_#{global_index}", class: "hidden-suuryou" %>
+      </div>
+    <% end %>
+    <% index_offset += @niku.size %>
+  </div>
+
+  <br>
+
+  <h2 class="section-title sakana">魚介</h2>
+  <div class="ingredient-group">
+    <% @sakana.each_with_index do |sakana, index| %>
+      <% global_index = index + index_offset %>
+      <div class="ingredient-item">
+        <div 
+          class="ingredient-button"
+          data-index="<%= global_index %>"
+          data-max="5"
+          data-name="<%= sakana.name %>"
+        >
+          <span><%= sakana.name %></span>
+        </div>
+
+        <%= hidden_field_tag "syokuzais[][name]", "", id: "hidden_name_#{global_index}", class: "hidden-name" %>
+        <%= select_tag "syokuzais[][suuryou]", options_for_select((0..5).to_a, 0), id: "suuryou_#{global_index}", class: "hidden-suuryou" %>
+      </div>
+    <% end %>
+    <% index_offset += @sakana.size %>
+  </div>
+
+  <br>
+
+  <h2 class="section-title sonota">その他</h2>
+  <div class="ingredient-group">
+    <% @sonota.each_with_index do |sonota, index| %>
+      <% global_index = index + index_offset %>
+      <div class="ingredient-item">
+        <div 
+          class="ingredient-button"
+          data-index="<%= global_index %>"
+          data-max="5"
+          data-name="<%= sonota.name %>"
+        >
+          <span><%= sonota.name %></span>
+        </div>
+
+        <%= hidden_field_tag "syokuzais[][name]", "", id: "hidden_name_#{global_index}", class: "hidden-name" %>
+        <%= select_tag "syokuzais[][suuryou]", options_for_select((0..5).to_a, 0), id: "suuryou_#{global_index}", class: "hidden-suuryou" %>
+      </div>
+    <% end %>
+    <% index_offset += @sonota.size %>
+  </div>
+
+  <br>
+
+  <%= f.submit "煮込む", class: "btn-top-radius" %>
+  <% end %>
 </body>

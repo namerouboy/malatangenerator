@@ -13,6 +13,7 @@ module CodespacesTryRails
 
     config.assets.compile = true
     config.assets.digest = true
+    config.hosts << "fuzzy-invention-5gv77xp7v69gh79wp-3000.app.github.dev"
 
     # Configuration for the application, engines, and railties goes here.
     #
