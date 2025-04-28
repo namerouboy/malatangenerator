@@ -1,3 +1,4 @@
+/* 全体設定 */
 *{
   margin: 0;
   padding: 0;
@@ -7,12 +8,17 @@ header{
   background-color: #FC913A;
   color: white;
   width: 100%;
-  height: 80px;
+  height: 45px;
   padding: 0 0;
   box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
   align-items: center;
+}
+
+h1 {
+  white-space: nowrap;      /* テキストの改行を防ぐ */
+  overflow: hidden;         /* はみ出した部分を隠す */
+  text-overflow: ellipsis;  /* はみ出た場合は省略記号を表示 */
+  font-size: 1.5rem;         /* モバイル対応で文字サイズを少し下げる */
 }
 
 body{
@@ -20,26 +26,191 @@ body{
   padding: 0 5%;
 }
 
+/* 煮込むボタン */
 .btn-top-radius {
   position: relative;
   display: inline-block;
   font-weight: bold;
-  padding: 8px 10px 5px 10px;
+  font-size: 1.1rem;
+  padding: 14px 24px;
   text-decoration: none;
   color: #FFA000;
   background: #fff1da;
   border-bottom: solid 4px #FFA000;
   border-radius: 15px 15px 0 0;
-  transition: .4s;
+  transition: background 0.3s ease, transform 0.2s ease;
   border: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .btn-top-radius:hover {
   background: #ffc25c;
-  color: #FFF;
+  color: white;
+  transform: scale(1.03);
   outline: none;
 }
 
 ul {
   list-style: none;
+}
+
+
+/* 食材ボタングループ */
+.ingredient-group {
+  display: flex;
+  flex-wrap: wrap; /* 折り返しあり */
+  gap: 8px; /* 要素間の間隔を設定 */
+}
+
+.ingredient-group > div {
+  display: flex;
+  justify-content: center;  /* 真ん中に寄せる */
+  align-items: center;
+  padding: 0;
+  margin: 0;
+
+  width: fit-content; /* ボタンに合わせてサイズを最小化 */
+  max-width: 100%; /* はみ出し防止 */
+}
+
+
+/* 食材ボタン本体 */
+.ingredient-button {
+  width: 90px;
+  height: 90px;
+  border-radius: 16px;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 2px solid #ccc;
+  cursor: pointer;
+  overflow: hidden;
+  background-color: #f9f9f9;
+  transition: background 0.3s ease;
+  font-weight: bold;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none; /* Safari用 */
+}
+
+.ingredient-button::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background-color: #F68655;
+  z-index: 0;
+  transition: height 0.3s ease;
+}
+
+.ingredient-button.clicked {
+  color: #F6B352;
+}
+
+.ingredient-button span {
+  position: relative;
+  z-index: 1;
+}
+
+.ingredient-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 非表示のform要素 */
+.hidden-fields {
+  display: none;
+}
+
+.ingredient-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hidden-name {
+  display: none;
+}
+.hidden-suuryou {
+  display: none;
+}
+
+
+/* result画面 */
+.malatan-body {
+  font-family: sans-serif;
+  padding: 1rem;
+  line-height: 1.6;
+}
+
+.section {
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 2px solid #F68655;
+  padding-bottom: 0.3rem;
+  color: #F68655;
+}
+
+.syokuzai-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.syokuzai-table th,
+.syokuzai-table td {
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.syokuzai-table th {
+  background-color: #f9f9f9;
+}
+
+.description {
+  padding: 1em;
+  background-color: #fff8e1;
+  border-radius: 8px;
+  margin: 1em 0;
+  font-size: 1.1em;
+  color: #333;
+}
+
+.ingredient-item {
+  margin-bottom: 0.8em;
+}
+
+
+/* 画像保存ボタン */
+.save-image-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #F68655;
+  color: white;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.save-image-btn:hover {
+  background-color: #F36F26;
+  transform: scale(1.1);
+}
+
+.save-image-btn:active {
+  background-color: #F36F26;
+  transform: scale(1);
 }

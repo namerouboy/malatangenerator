@@ -11,6 +11,10 @@ module CodespacesTryRails
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.1
 
+    config.assets.compile = true
+    config.assets.digest = true
+    config.hosts << "fuzzy-invention-5gv77xp7v69gh79wp-3000.app.github.dev"
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
