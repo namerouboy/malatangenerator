@@ -1,3 +1,4 @@
+/* 全体設定 */
 *{
   margin: 0;
   padding: 0;
@@ -10,15 +11,13 @@ header{
   height: 45px;
   padding: 0 0;
   box-sizing: border-box;
-  /* display: flex; */
-  /* justify-content: space-between; */
   align-items: center;
 }
 
 h1 {
   white-space: nowrap;      /* テキストの改行を防ぐ */
-  overflow: hidden;         /* はみ出した部分を隠す（必要に応じて） */
-  text-overflow: ellipsis;  /* 省略記号を表示（オプション） */
+  overflow: hidden;         /* はみ出した部分を隠す */
+  text-overflow: ellipsis;  /* はみ出た場合は省略記号を表示 */
   font-size: 1.5rem;         /* モバイル対応で文字サイズを少し下げる */
 }
 
@@ -27,12 +26,13 @@ body{
   padding: 0 5%;
 }
 
+/* 煮込むボタン */
 .btn-top-radius {
   position: relative;
   display: inline-block;
   font-weight: bold;
-  font-size: 1.1rem; /* 👈 少し大きめの文字 */
-  padding: 14px 24px; /* 👈 押しやすく見やすく */
+  font-size: 1.1rem;
+  padding: 14px 24px;
   text-decoration: none;
   color: #FFA000;
   background: #fff1da;
@@ -40,13 +40,13 @@ body{
   border-radius: 15px 15px 0 0;
   transition: background 0.3s ease, transform 0.2s ease;
   border: none;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* 👈 やんわり立体感 */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .btn-top-radius:hover {
   background: #ffc25c;
   color: white;
-  transform: scale(1.03); /* 👈 ふわっと拡大 */
+  transform: scale(1.03);
   outline: none;
 }
 
@@ -55,10 +55,11 @@ ul {
 }
 
 
+/* 食材ボタングループ */
 .ingredient-group {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  flex-wrap: wrap; /* 折り返しあり */
+  gap: 8px; /* 要素間の間隔を設定 */
 }
 
 .ingredient-group > div {
@@ -73,7 +74,7 @@ ul {
 }
 
 
-
+/* 食材ボタン本体 */
 .ingredient-button {
   width: 90px;
   height: 90px;
@@ -98,7 +99,6 @@ ul {
 .ingredient-button::before {
   content: "";
   position: absolute;
-  bottom: 0; /* ← 下からスタート */
   left: 0;
   width: 100%;
   height: 0%;
@@ -114,13 +114,6 @@ ul {
 .ingredient-button span {
   position: relative;
   z-index: 1;
-}
-
-.button-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3列 */
-  gap: 4px;
-  justify-items: center;
 }
 
 .ingredient-item {
@@ -198,26 +191,26 @@ ul {
 }
 
 
-/* 画像保存ボタンのスタイル */
+/* 画像保存ボタン */
 .save-image-btn {
   display: inline-block;
   padding: 12px 24px;
   font-size: 16px;
   font-weight: bold;
-  background-color: #F68655;  /* 優しいオレンジ色 */
+  background-color: #F68655;
   color: white;
-  border-radius: 30px;  /* 丸みを帯びた角 */
+  border-radius: 30px;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .save-image-btn:hover {
-  background-color: #F36F26;  /* ホバー時の少し濃いオレンジ色 */
-  transform: scale(1.1);  /* ちょっと大きくなるアニメーション */
+  background-color: #F36F26;
+  transform: scale(1.1);
 }
 
 .save-image-btn:active {
-  background-color: #F36F26;  /* 押下時の色 */
-  transform: scale(1);  /* 押した時に元のサイズに戻る */
+  background-color: #F36F26;
+  transform: scale(1);
 }
