@@ -1,21 +1,26 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
+# 基本設定ファイル(spec_helperを読み込む)
 require 'spec_helper'
+# Pumaサーバ(Railsを動かすためのアプリケーションサーバー)を使えるようにする
 require 'rack/handler/puma'
+# RAILS_ENV を test環境 にセット
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
+#本番環境の場合エラーが発生したら停止する
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 # Uncomment the line below in case you have `--require rails_helper` in the `.rspec` file
 # that will avoid rails generators crashing because migrations haven't been run yet
 # return unless Rails.env.test?
+# RSpecとRailsの連携をセットアップ
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
  
-Capybara.server_host = '0.0.0.0'
+Capybara.server_host = '0.0.0.0' # Capybaraのサーバーをどこからでもアクセスできる設定に
 Capybara.server_port = 3001 # 空いてる任意のポート（CI上で他と被らなければOK）
-Capybara.app_host = "http://127.0.0.1:3001"
-Capybara.save_path = Rails.root.join("tmp/capybara")
-FileUtils.mkdir_p(Capybara.save_path) unless File.directory?(Capybara.save_path)
+Capybara.app_host = "http://127.0.0.1:3001" #テスト時のブラウザのURL
+Capybara.save_path = Rails.root.join("tmp/capybara") #スクリーンショットの保存先
+FileUtils.mkdir_p(Capybara.save_path) unless File.directory?(Capybara.save_path)#保存先のフォルダがなければ作る
 
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -31,10 +36,12 @@ FileUtils.mkdir_p(Capybara.save_path) unless File.directory?(Capybara.save_path)
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
+# spec/supportフォルダのファイルを読み込む(今回は使っていないのでコメントアウト)
 # Rails.root.glob('spec/support/**/*.rb').sort_by(&:to_s).each { |f| require f }
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
+# テスト用DBが最新かどうかチェック
 begin
   ActiveRecord::Migration.maintain_test_schema!
 rescue ActiveRecord::PendingMigrationError => e
@@ -42,6 +49,7 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
+  # テスト用ダミーデータ(fixtures)の保存先を設定
   config.fixture_paths = [
     Rails.root.join('spec/fixtures')
   ]
@@ -49,6 +57,7 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
+  # #トランザクションの使用
   config.use_transactional_fixtures = true
 
   # You can uncomment this line to turn off ActiveRecord support entirely.
@@ -72,6 +81,7 @@ RSpec.configure do |config|
   # config.infer_spec_type_from_file_location!
 
   # Filter lines from Rails gems in backtraces.
+  # Railsエラーバックトレースを見やすくする
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
