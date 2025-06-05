@@ -29,6 +29,9 @@ RSpec.configure do |config|
   # トランザクションの使用
   config.use_transactional_fixtures = true
 
+  # RSpecのテストタイプ推論を有効にする
+  config.infer_spec_type_from_file_location!
+
   # Railsエラーバックトレースを見やすくする
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:

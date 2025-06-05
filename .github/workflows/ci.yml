@@ -80,6 +80,10 @@ jobs:
     - name: Run system specs
       run: bundle exec rspec spec/system
 
+      #rspec/modelフォルダにあるテストファイルを実行する
+    - name: Run model specs
+      run: bundle exec rspec spec/model
+
       #テスト失敗時に、スクリーンショットをアップロードする
     - name: Upload Capybara screenshots
       if: failure()
