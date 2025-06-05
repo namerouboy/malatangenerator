@@ -4,9 +4,9 @@ name: Rails CI
 #ワークフローの実行タイミング
 on:
   push:
-    branches: [ "suuryousentaku" ]
+    branches: [ "develop" ]
   pull_request:
-    branches: [ "suuryousentaku" ]
+    branches: [ "develop" ]
 
 #ジョブの定義
 jobs:
