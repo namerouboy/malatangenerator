@@ -82,7 +82,7 @@ jobs:
 
       #rspec/modelフォルダにあるテストファイルを実行する
     - name: Run model specs
-      run: bundle exec rspec spec/model
+      run: bundle exec rspec spec/models
 
       #テスト失敗時に、スクリーンショットをアップロードする
     - name: Upload Capybara screenshots
