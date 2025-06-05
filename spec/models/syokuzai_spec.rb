@@ -3,6 +3,9 @@ require 'rails_helper'
 RSpec.describe Syokuzai, type: :model do
   describe '.search_by_names' do
     before do
+      # データ衝突を避けるために事前に全削除（テストDBのみ）
+      Syokuzai.delete_all
+
       Syokuzai.create!(name: "白菜")
       Syokuzai.create!(name: "もやし")
       Syokuzai.create!(name: "春雨")
