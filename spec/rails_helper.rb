@@ -16,11 +16,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
  
-Capybara.server_host = '0.0.0.0' # Capybaraのサーバーをどこからでもアクセスできる設定に
-Capybara.server_port = 3001 # 空いてる任意のポート（CI上で他と被らなければOK）
-Capybara.app_host = "http://127.0.0.1:3001" #テスト時のブラウザのURL
-Capybara.save_path = Rails.root.join("tmp/capybara") #スクリーンショットの保存先
-FileUtils.mkdir_p(Capybara.save_path) unless File.directory?(Capybara.save_path)#保存先のフォルダがなければ作る
+
 
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -36,8 +32,8 @@ FileUtils.mkdir_p(Capybara.save_path) unless File.directory?(Capybara.save_path)
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-# spec/supportフォルダのファイルを読み込む(今回は使っていないのでコメントアウト)
-# Rails.root.glob('spec/support/**/*.rb').sort_by(&:to_s).each { |f| require f }
+# spec/supportフォルダのファイルを読み込む
+Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
