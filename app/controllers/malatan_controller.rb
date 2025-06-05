@@ -11,14 +11,14 @@ class MalatanController < ApplicationController
   end
 
   def search
-    @syokuzai = Syokuzai.search_by_names(params[:syokuzais])
+    @syokuzai = Syokuzai.search_by_names(search_params)
     @suuryous = search_params
 
     render "/malatan/result"
   end
 
   def search_params
-    params.require(:syokuzais).map do |syokuzai|
+    params.fetch(:syokuzais, []).map do |syokuzai|
       syokuzai.permit(:name, :suuryou)
     end
   end
