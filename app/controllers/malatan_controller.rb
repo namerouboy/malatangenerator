@@ -11,6 +11,12 @@ class MalatanController < ApplicationController
   end
 
   def search
+    if params[:syokuzais].blank? || params[:syokuzais].all? { |s| s[:name].blank? }
+      flash[:alert] = "食材を選択してください"
+      redirect_to action: :index
+      return
+    end
+
     @syokuzai = Syokuzai.search_by_names(search_params)
     @suuryous = search_params
 
