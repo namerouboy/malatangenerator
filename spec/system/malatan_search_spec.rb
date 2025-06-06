@@ -16,5 +16,12 @@ RSpec.describe "マーラータン検索", type: :system do
 
     # 検索結果ページで「じゃがいも」が表示されていることを確認
     expect(page).to have_content("じゃがいも")
+
+    # テキストボックスに「じゃがいものレシピ」と入力
+    fill_in "レシピ名：", with: "じゃがいものレシピ"
+    click_button "このレシピを保存する"
+
+    # 「レシピを保存しました！」と表示されていることを確認
+    expect(page).to have_content("レシピを保存しました！")
   end
 end

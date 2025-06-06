@@ -24,6 +24,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_05_045657) do
   create_table "malatan_syokuzais", force: :cascade do |t|
     t.integer "malatan_id", null: false
     t.integer "syokuzai_id", null: false
+    t.integer "count", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["malatan_id"], name: "index_malatan_syokuzais_on_malatan_id"

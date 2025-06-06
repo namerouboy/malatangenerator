@@ -15,10 +15,10 @@ header{
 }
 
 h1 {
-  white-space: nowrap;      /* テキストの改行を防ぐ */
-  overflow: hidden;         /* はみ出した部分を隠す */
-  text-overflow: ellipsis;  /* はみ出た場合は省略記号を表示 */
-  font-size: 1.5rem;         /* モバイル対応で文字サイズを少し下げる */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1.5rem;
 }
 
 body{
@@ -203,6 +203,7 @@ ul {
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
+  text-decoration: none;
 }
 
 .save-image-btn:hover {
@@ -213,4 +214,68 @@ ul {
 .save-image-btn:active {
   background-color: #F36F26;
   transform: scale(1);
+}
+
+
+/* レシピ一覧 */
+
+/* レシピカード */
+.malatan-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.malatan-card-link:hover {
+  text-decoration: none;
+}
+
+.recipe-list {
+  margin-top: 2rem;
+  font-family: 'sans-serif';
+  text-decoration: none;
+}
+
+.recipe-card {
+  background-color: #fff8e1;
+  border: 2px solid #F6B352;
+  border-radius: 15px;
+  padding: 1.2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+  text-decoration: none;
+}
+
+.recipe-card:hover {
+  transform: scale(1.02);
+}
+
+.recipe-title {
+  font-size: 1.4rem;
+  color: #FC913A;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.recipe-meta {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 0.8rem;
+}
+
+.recipe-details {
+  font-size: 1rem;
+  color: #4C4C4C;
+  line-height: 1.6;
+}
+
+.recipe-details span {
+  font-weight: bold;
+  color: #F36F26;
+}
+
+.recipe-details strong {
+  font-weight: bold;
+  color: #F36F26;
 }
