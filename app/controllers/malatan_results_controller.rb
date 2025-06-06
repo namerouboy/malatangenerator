@@ -1,4 +1,5 @@
 class MalatanResultsController < ApplicationController
+
  def index
     @malatans = Malatan.includes(malatan_syokuzais: :syokuzai).order(created_at: :desc)
   end
