@@ -10,6 +10,8 @@
 </head>
 
 <body class="malatan-body">
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  
   <header>
     <div class="logo">
       <h1>マーラータンジェネレーター</h1>
@@ -74,19 +76,5 @@
   <%= link_to "戻る", root_path, class: "btn-top-radius" %>
 
   <button onclick="saveAsImage()" class="save-image-btn">レシピを保存</button>
-
-<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-<script>
-  function saveAsImage() {
-    const target = document.getElementById("result-capture");
-    html2canvas(target).then(canvas => {
-      const link = document.createElement("a");
-      link.download = "malatan_result.png";
-      link.href = canvas.toDataURL("image/png");
-      link.click();
-    });
-  }
-</script>
-
 
 </body>
