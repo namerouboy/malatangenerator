@@ -17,155 +17,155 @@ for i in 0..10
 
   require "csv"
 
-# CSV.foreach('db/seeds/Syokuzai.csv', headers: true) do |row|
-#   Syokuzai.create!(
-#     category: row['category'],
-#     name: row['name'],
-#     weight: row['weight'],
-#     calorie: row['calorie'],
-#     explanation: row['explanation']
-#   )
-# end
+CSV.foreach('db/seeds/Syokuzai.csv', headers: true) do |row|
+  Syokuzai.create!(
+    category: row['category'],
+    name: row['name'],
+    weight: row['weight'],
+    calorie: row['calorie'],
+    explanation: row['explanation']
+  )
+end
 
 
 
-Syokuzai.create(
+# Syokuzai.create(
 
-category: 'soup',
+# category: 'soup',
 
-name: '辛いスープ',
+# name: '辛いスープ',
 
-weight: 0,
+# weight: 0,
 
-calorie: 71,
+# calorie: 71,
 
-explanation: '辛いスープ。普通でもけっこう辛い。ティッシュの持参は必須だ。'
+# explanation: '辛いスープ。普通でもけっこう辛い。ティッシュの持参は必須だ。'
 
-)
+# )
 
-Syokuzai.create(
+# Syokuzai.create(
 
-category: 'vegetables',
+# category: 'vegetables',
 
-name: '青梗菜',
+# name: '青梗菜',
 
-weight: 17,
+# weight: 17,
 
-calorie: 2,
+# calorie: 2,
 
-explanation: '中華の定番。２番目に選ばれることが多い。'
+# explanation: '中華の定番。２番目に選ばれることが多い。'
 
-)
+# )
 
-Syokuzai.create(
+# Syokuzai.create(
 
-category: 'vegetables',
+# category: 'vegetables',
 
-name: 'じゃがいも',
+# name: 'じゃがいも',
 
-weight: 8,
+# weight: 8,
 
-calorie: 11,
+# calorie: 11,
 
-explanation: '意外と糖質が低い。'
+# explanation: '意外と糖質が低い。'
 
-)
+# )
 
-Syokuzai.create(
+# Syokuzai.create(
 
-category: 'vegetables',
+# category: 'vegetables',
 
-name: 'ぶなしめじ',
+# name: 'ぶなしめじ',
 
-weight: 15,
+# weight: 15,
 
-calorie: 33,
+# calorie: 33,
 
-explanation: '豊富な食物繊維が辛さをやわらげる'
+# explanation: '豊富な食物繊維が辛さをやわらげる'
 
-)
+# )
 
-Syokuzai.create(
+# Syokuzai.create(
 
-category: 'vegetables',
+# category: 'vegetables',
 
-name: 'しいたけ',
+# name: 'しいたけ',
 
-weight: 10,
+# weight: 10,
 
-calorie: 2,
+# calorie: 2,
 
-explanation: 'じゅわわと染み出るおだしがこれまたうまい'
+# explanation: 'じゅわわと染み出るおだしがこれまたうまい'
 
-)
+# )
 
-Syokuzai.create(
+# Syokuzai.create(
 
-category: 'men',
+# category: 'men',
 
-name: '春雨',
+# name: '春雨',
 
-weight: 1,
+# weight: 1,
 
-calorie: 3,
+# calorie: 3,
 
-explanation: '６本あたりの数値。辛い麺といえば春雨。'
+# explanation: '６本あたりの数値。辛い麺といえば春雨。'
 
-)
+# )
 
-Syokuzai.create(
+# Syokuzai.create(
 
-category: 'nerimono',
+# category: 'nerimono',
 
-name: '謎だんご',
+# name: '謎だんご',
 
-weight: 30,
+# weight: 30,
 
-calorie: 25,
+# calorie: 25,
 
-explanation: '謎だが異様にうまいだんご。中からかにみそと魚卵がトロリと出てくる。'
+# explanation: '謎だが異様にうまいだんご。中からかにみそと魚卵がトロリと出てくる。'
 
-)
+# )
 
-Syokuzai.create(
+# Syokuzai.create(
 
-category: 'meats',
+# category: 'meats',
 
-name: 'ラム',
+# name: 'ラム',
 
-weight: 15,
+# weight: 15,
 
-calorie: 25,
+# calorie: 25,
 
-explanation: '臭みなし。あなた本当に羊？'
+# explanation: '臭みなし。あなた本当に羊？'
 
-)
+# )
 
-Syokuzai.create(
+# Syokuzai.create(
 
-category: 'seafoods',
+# category: 'seafoods',
 
-name: 'えび',
+# name: 'えび',
 
-weight: 4,
+# weight: 4,
 
-calorie: 3,
+# calorie: 3,
 
-explanation: 'ぷりりとしたえび。'
+# explanation: 'ぷりりとしたえび。'
 
-)
+# )
 
-Syokuzai.create(
+# Syokuzai.create(
 
-category: 'sonota',
+# category: 'sonota',
 
-name: '鴨の血',
+# name: '鴨の血',
 
-weight: 30,
+# weight: 30,
 
-calorie: 10,
+# calorie: 10,
 
-explanation: '本場の風を取り入れたいならマスト。'
+# explanation: '本場の風を取り入れたいならマスト。'
 
-)
+# )
 
