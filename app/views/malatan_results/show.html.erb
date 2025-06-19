@@ -20,6 +20,11 @@
 
   <div id="result-capture">
   <div class="section">
+    <h2 class="section-title">レシピ名</h2>
+    <%= @malatan.name %>
+  </div>
+
+  <div class="section">
     <h2 class="section-title">選んだ食材</h2>
     <table class="syokuzai-table">
       <thead>
@@ -35,21 +40,21 @@
         <% goukeichi = 0.0 %>
         <% calorie = 0.0 %>
 
-        <% @syokuzai.each do |syokuzai| %>
-          <% matched = @suuryous.find { |s| s["name"] == syokuzai.name } || {} %>
-          <% suuryou = matched["suuryou"].to_i %>
-          <% total_weight = syokuzai.weight * suuryou %>
-          <% goukeichi += total_weight %>
-          <% total_calorie = syokuzai.calorie * suuryou %>
-          <% calorie += syokuzai.calorie * suuryou %>
-          <tr>
-            <td><%= syokuzai.name %></td>
-            <td><%= syokuzai.weight %></td>
-            <td><%= suuryou %></td>
-            <td><%= total_weight %></td>
-            <td><%= total_calorie %></td>
-          </tr>
-        <% end %>
+        <% @malatan.malatan_syokuzais.includes(:syokuzai).each do |ms| %>
+            <% s = ms.syokuzai %>
+            <% suuryou = ms.count.to_i %>
+            <% total_weight = s.weight.to_i * suuryou %>
+            <% goukeichi += total_weight %>
+            <% total_calorie = s.calorie.to_i * suuryou %>
+            <% calorie += total_calorie %>
+            <tr>
+              <td><%= s.name %></td>
+              <td><%= s.weight %></td>
+              <td><%= ms.count %></td>
+              <td><%= total_weight %></td>
+              <td><%= total_calorie %></td>
+            </tr>
+          <% end %>
       </tbody>
     </table>
   </div>
@@ -75,40 +80,10 @@
 </div>
 
   <div class="section">
-    <%= link_to "戻る", root_path, class: "btn-top-radius" %>
+    <%= link_to "戻る", malatan_results_path, class: "btn-top-radius" %>
 
     <button onclick="saveAsImage()" class="save-image-btn">画像を保存</button>
   </div>
 
-
-  <div class="section">
-    <h2 class="section-title">レシピを登録する？</h2>
-
-    <%= form_with url: malatan_results_path, method: :post, local: true do |f| %>
-  <div>
-    <%= f.label :name, "レシピ名：" %>
-    <%= f.text_field :name, value: @malatan&.name, required: true %>
-  </div>
-
-  <% @syokuzai.each do |syokuzai| %>
-    <% matched = @suuryous.find { |s| s["name"] == syokuzai.name } || {} %>
-    <% suuryou = matched["suuryou"].to_i %>
-    <%= hidden_field_tag "suuryous[#{syokuzai.name}]", suuryou if suuryou > 0 %>
-  <% end %>
-
-  <div>
-    <%= f.submit "このレシピを保存する", class: "save-image-btn" %>
-  </div>
-<% end %>
-
-<% if flash[:notice] %>
-  <div class="flash-notice"><%= flash[:notice] %></div>
-<% end %>
-
-<% if flash[:alert] %>
-  <div class="flash-alert"><%= flash[:alert] %></div>
-<% end %>
-
-  </div>
 
 </body>

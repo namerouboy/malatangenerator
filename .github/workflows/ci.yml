@@ -4,9 +4,9 @@ name: Rails CI
 #ワークフローの実行タイミング
 on:
   push:
-    branches: [ "suuryousentaku" ]
+    branches: [ "develop" ]
   pull_request:
-    branches: [ "suuryousentaku" ]
+    branches: [ "develop" ]
 
 #ジョブの定義
 jobs:
@@ -79,6 +79,10 @@ jobs:
       #rspec/systemフォルダにあるテストファイルを実行する
     - name: Run system specs
       run: bundle exec rspec spec/system
+
+      #rspec/modelフォルダにあるテストファイルを実行する
+    - name: Run model specs
+      run: bundle exec rspec spec/models
 
       #テスト失敗時に、スクリーンショットをアップロードする
     - name: Upload Capybara screenshots

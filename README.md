@@ -20,3 +20,5 @@
 | Database          | PostgreSQL                                           |
 | CI/CD             | GitHub Actions                                       |
 
+## E-R図
+![ER図](public/er.png)

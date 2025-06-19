@@ -16,6 +16,17 @@
     </div>
   </header>
 
+  <div>
+    <br>
+    <%= link_to "みんなの作ったレシピを見る", malatan_results_path, class: "save-image-btn" %>
+    </div>
+
+  <% if flash[:alert] %>
+    <div class="flash-alert" style="color: red; font-weight: bold; margin: 10px 0;">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+
   <div class="description">
     <p>食材を選択してください。１つの食材につき5個まで追加することができます。</p>
   </div>

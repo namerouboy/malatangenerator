@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="一緒に最高のマーラータンを生み出しましょう">
+  <title>マーラータンジェネレーター</title>
+  <%= stylesheet_link_tag "malatan", "data-turbo-track": "reload" %>
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <h1>マーラータンジェネレーター</h1>
+    </div>
+  </header>
+
+<div class="recipe-list">
+  <% @malatans.each do |malatan| %>
+  <%= link_to malatan_result_path(malatan), class: "malatan-card-link" do %>
+    <div class="recipe-card">
+      <div class="recipe-title"><%= malatan.name %></div>
+      <div class="recipe-meta">
+        登録日: <%= malatan.created_at.strftime("%Y年%m月%d日") %>
+      </div>
+      <div class="recipe-details">
+        <p><span>カロリー：</span><%= malatan.total_calorie %> kcal</p>
+        <% dish_weight = 150 %>
+        <% price = (malatan.total_weight + dish_weight) / 100 * 400 %>
+        <p><span>値段：</span><%= price.round(2) %> 円</p>
+        <p><strong>使われている食材：</strong>
+          <%= malatan.syokuzais.limit(5).map(&:name).join("、") %>　など
+        </p>
+      </div>
+    </div>
+  <% end %>
+  <% end %>
+</div>
+
+<div class="section">
+  <%= link_to "戻る", root_path, class: "btn-top-radius" %>
+</div>
+
+</body>
