@@ -74,8 +74,9 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   # VPSで公開するために追加
-  config.hosts.clear
   config.hosts << "os3-322-50548.vs.sakura.ne.jp"
+  config.hosts << "49.212.136.52:3000"
+
 
 
   # Allow requests from our preview domain.
