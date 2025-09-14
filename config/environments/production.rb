@@ -4,6 +4,7 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   # 
   config.hosts << "malatangenerator.onrender.com"
+  config.hosts << "os3-322-50548.vs.sakura.ne.jp"
 
   # Code is not reloaded between requests.
   config.cache_classes = true
