@@ -1,43 +1,33 @@
-# Puma can serve each request in a thread from an internal thread pool.
-# The `threads` method setting takes two numbers: a minimum and maximum.
-# Any libraries that use thread pools should be configured to match
-# the maximum value specified for Puma. Default is set to 5 threads for minimum
-# and maximum; this matches the default thread size of Active Record.
-#
+# VPSで本番で動かすために書き直し
+
+# スレッド設定
 max_threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
 min_threads_count = ENV.fetch("RAILS_MIN_THREADS") { max_threads_count }
 threads min_threads_count, max_threads_count
 
-# Specifies the `worker_timeout` threshold that Puma will use to wait before
-# terminating a worker in development environments.
-#
-worker_timeout 3600 if ENV.fetch("RAILS_ENV", "development") == "development"
+# 本番ではポートではなくソケットを使う
+bind "unix:///home/namerou/malatangenerator/shared/sockets/puma.sock"
 
-# Specifies the `port` that Puma will listen on to receive requests; default is 3000.
-#
-port ENV.fetch("PORT") { 3000 }
+# 環境設定
+environment ENV.fetch("RAILS_ENV") { "production" }
 
-# Specifies the `environment` that Puma will run in.
-#
-environment ENV.fetch("RAILS_ENV") { "development" }
+# PID / state ファイル
+pidfile "/home/namerou/malatangenerator/shared/pids/puma.pid"
+state_path "/home/namerou/malatangenerator/shared/pids/puma.state"
 
-# Specifies the `pidfile` that Puma will use.
-pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
+# ワーカー数（プロセス数）
+workers ENV.fetch("WEB_CONCURRENCY") { 2 }
 
-# Specifies the number of `workers` to boot in clustered mode.
-# Workers are forked web server processes. If using threads and workers together
-# the concurrency of the application would be max `threads` * `workers`.
-# Workers do not work on JRuby or Windows (both of which do not support
-# processes).
-#
-# workers ENV.fetch("WEB_CONCURRENCY") { 2 }
+# アプリをプリロード（メモリ節約 & 高速化）
+preload_app!
 
-# Use the `preload_app!` method when specifying a `workers` number.
-# This directive tells Puma to first boot the application and load code
-# before forking the application. This takes advantage of Copy On Write
-# process behavior so workers use less memory.
-#
-# preload_app!
+# デーモン化（バックグラウンドで動かす）
+daemonize true
 
-# Allow puma to be restarted by `bin/rails restart` command.
+# ログ出力先
+stdout_redirect "/home/namerou/malatangenerator/shared/log/puma.stdout.log",
+                "/home/namerou/malatangenerator/shared/log/puma.stderr.log",
+                true
+
+# bin/rails restart で再起動可能にする
 plugin :tmp_restart
