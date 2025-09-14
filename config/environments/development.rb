@@ -73,6 +73,11 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 
+  # VPSで公開するために追加
+  config.hosts.clear
+  config.hosts << "os3-322-50548.vs.sakura.ne.jp"
+
+
   # Allow requests from our preview domain.
   pf_host = "#{ENV['CODESPACE_NAME']}-3000.#{pf_domain}"
   config.hosts << pf_host
