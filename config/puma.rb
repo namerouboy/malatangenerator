@@ -12,7 +12,7 @@ bind "unix:///home/namerou/malatangenerator/shared/sockets/puma.sock"
 environment ENV.fetch("RAILS_ENV") { "production" }
 
 # PID / state ファイル
-pidfile "/home/namerou/malatangenerator/shared/pids/puma.pid"
+pidfile ENV.fetch("PIDFILE") { "/home/namerou/malatangenerator/shared/pids/puma.pid" }
 state_path "/home/namerou/malatangenerator/shared/pids/puma.state"
 
 # ワーカー数（プロセス数）
