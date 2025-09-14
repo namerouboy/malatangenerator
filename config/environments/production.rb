@@ -5,6 +5,8 @@ Rails.application.configure do
   # 
   config.hosts << "malatangenerator.onrender.com"
   config.hosts << "os3-322-50548.vs.sakura.ne.jp"
+  config.hosts << "127.0.0.1"
+  config.hosts << "localhost"
 
   # Code is not reloaded between requests.
   config.cache_classes = true
